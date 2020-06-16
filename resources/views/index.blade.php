@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Worked-app</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 </head>
@@ -15,13 +14,12 @@
         <div class="container">
 
             <h1>- Worked-app -</h1>
-
+            <p class="lead text-muted">Este esprint termina en X días X horas X minutos.</p>
             @if(!isset($session))
                 <p class="lead text-muted">No hay ninguna sesión creada.</p>
             @else
                 <p class="lead text-muted">La sesión actual es la número {{ $session->id }} y está <span class="badge badge-{{ $session->getStatusColor() }}">{{ $session->status }}</span>.</p>
             @endif
-    
             <div class="d-flex justify-content-center">
                 @if(App\WorkedSession::canStart())
                 <form action="{{ route('store') }}" method="POST">
@@ -74,10 +72,12 @@
                 <div class="col-md-4">
                     <h2 class="text-center">Today sessions</h2>
                     <h3>Sessions list</h3>
-                    <li>session-1</li>
-                    <li>session-2</li>
-                    <li>session-3</li>
-                    <h3>resume day sessions</h3>
+                    <ul>
+                        <li>session-1</li>
+                        <li>session-2</li>
+                        <li>session-3</li>
+                    </ul>
+                    <h3>Daily resume</h3>
                     <ul>
                         <li>Time working today:</li>
                         <li>Time resting today</li>
@@ -88,6 +88,38 @@
                 </div>
                 <div class="col-md-4">
                     <h2 class="text-center">This week sessions</h2>
+                    <h3>Session list</h3>
+                    <ul>
+                        <li>Day-1: </li>
+                        <ul>
+                            <li>Time working: </li>
+                            <li>Time resting: </li>
+                            <li>Pauses while working: </li>
+                        </ul>
+                        <li>Day-2: </li>
+                        <ul>
+                            <li>Time working: </li>
+                            <li>Time resting: </li>
+                            <li>Pauses while working: </li>
+                        </ul>
+                        <li>...</li>
+                        <li>Day-7: </li>
+                        <ul>
+                            <li>Time working: </li>
+                            <li>Time resting: </li>
+                            <li>Pauses while working: </li>
+                        </ul>
+                    </ul>
+                    <h3>Weekly resume</h3>
+                    <ul>
+                        <li>Week-15-21 jun 2020</li>
+                        <ul>
+                            <li>Daily working time: </li>
+                            <li>Weekly working time: </li>
+                            <li>Weekly pauses while working: </li>
+                            <li>Dei has work x days this week.</li>
+                        </ul>
+                    </ul>
                 </div>
             </div>
         </div>
