@@ -47,4 +47,17 @@ class WorkedSession extends Model
 
         return $color[$this->status];
     }
+
+    public function displayFinalizedSession()
+    {
+        $end_session = null;
+        //comprobar si la sesion esta iniciada
+        if($this->created_at->status != 'stop' ){
+            $end_session = '¡Deivintír no te entretengas!';
+            return $end_session;
+        }else{
+            $end_session = $this->created_at->status;
+            return $end_session;
+        }
+    }
 }
