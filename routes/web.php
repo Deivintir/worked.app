@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', 'WorkedController');
+Route::get('/', 'WorkedController@index')->name('index');
+Route::post('/store', 'WorkedController@store')->name('store');
