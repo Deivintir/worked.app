@@ -57,9 +57,9 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2 class="text-center">Current session</h2>
-                        <h3>Info</h3>
+                    <h3>{{ $session->created_at->translatedFormat('d F Y') }}</h3>
                         <ul>
-                            <li>Initial hour: 08:00</li>
+                        <li>Initial hour: {{ $session->created_at->translatedFormat('H:i:s') }}</li>
                             <li>Resting time:</li>
                             <li>Release hour:</li>
                         </ul>
