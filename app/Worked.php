@@ -8,6 +8,6 @@ class Worked extends Model
 {
     public function session()
     {
-        return $this->belongsTo('App\WorkedSession');
+        return $this->belongsTo('App\WorkedSession', 'id', 'session_id');
     }
 }

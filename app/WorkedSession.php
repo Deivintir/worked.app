@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Worked;
 
 class WorkedSession extends Model
 {
     public function workeds()
     {
-        return $this->hasMany('App\Worked');
+        return $this->hasMany('App\Worked', 'session_id', 'id');
     }
     
     public static function getCurrentSession()
@@ -49,15 +50,8 @@ class WorkedSession extends Model
     }
 
     public function displayFinalizedSession()
-    {
-        $end_session = null;
-        //comprobar si la sesion esta iniciada
-        if($this->created_at->status != 'stop' ){
-            $end_session = '¡Deivintír no te entretengas!';
-            return $end_session;
-        }else{
-            $end_session = $this->created_at->status;
-            return $end_session;
-        }
+    {   
+        $worked = $this->workeds()->where('status', 'stop')->orderByDesc('id')->first();
+        return $this->status == 'stop' ?  $worked->updated_at->translatedFormat('H:i:s') :  '¡A currar, no te entretengas!';   
     }
 }
