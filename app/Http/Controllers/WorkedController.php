@@ -38,7 +38,6 @@ class WorkedController extends Controller
             $session->status = $request->status;
             $session->save();
         }
-
     
         $worked = new Worked;
         $worked->session_id = $session->id;

@@ -61,7 +61,7 @@
                         <ul>
                         <li>Initial hour: {{ $session->created_at->translatedFormat('H:i:s') }}</li>
                             <li>Resting time:</li>
-                            <li>Release hour:</li>
+                        <li>Release hour: {{ $session->displayFinalizedSession() }}</li>
                         </ul>
                         <h3>resume</h3>
                         <ul>
@@ -112,7 +112,7 @@
                     </ul>
                     <h3>Weekly resume</h3>
                     <ul>
-                        <li>Week-15-21 jun 2020</li>
+                        <li>Week 15-21 jun 2020</li>
                         <ul>
                             <li>Daily working time: </li>
                             <li>Weekly working time: </li>
