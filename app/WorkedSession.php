@@ -50,8 +50,39 @@ class WorkedSession extends Model
     }
 
     public function displayFinalizedSession()
-    {   
+    {
         $worked = $this->workeds()->where('status', 'stop')->orderByDesc('id')->first();
-        return $this->status == 'stop' ?  $worked->updated_at->translatedFormat('H:i:s') :  '¡A currar, no te entretengas!';   
+        return $this->status == 'stop' ?  $worked->updated_at->translatedFormat('H:i:s') :  '¡A currar, no te entretengas!';
+    }
+
+    public function getTotalPaused()
+    {
+        $last_pause = null;
+        $total_time = null;
+        foreach ($this->workeds as $worked){
+            if ($worked->status == 'pause') {
+                $last_pause = $worked;
+            }
+            if ($last_pause != null && $last_pause->status == 'pause'){
+                $rested_time = $worked->created_at->diffAsCarbonInterval($last_pause->created_at);
+                if ($total_time == null) {
+                    $total_time = $rested_time;
+                }else{
+                    $total_time = $total_time->add($rested_time);
+                }
+            }
+        }
+        return $total_time;
+    }
+
+    public function getTotalWorked()
+    {
+        
+    }
+
+
+    public function getTotalSession()
+    {
+
     }
 }
