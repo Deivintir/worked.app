@@ -60,7 +60,7 @@
                     <h3>{{ $session->created_at->translatedFormat('d F Y') }}</h3>
                         <ul>
                         <li>Initial hour: {{ $session->created_at->translatedFormat('H:i:s') }}</li>
-                            <li>Resting time:</li>
+                        <li>Resting time: {{ $session->getTotalPaused() }}</li>
                         <li>Release hour: {{ $session->displayFinalizedSession() }}</li>
                         </ul>
                         <h3>resume</h3>
